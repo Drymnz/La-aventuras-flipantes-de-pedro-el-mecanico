@@ -3,7 +3,7 @@ package feeder.Logic.Personajes;
 public class Personaje {
     private int Vida;
     private String Nombre;
-    protected Personaje(int Vida, String Nombre){
+    public Personaje(int Vida, String Nombre){
         this.Vida = Vida;
         this.Nombre = Nombre;
     }

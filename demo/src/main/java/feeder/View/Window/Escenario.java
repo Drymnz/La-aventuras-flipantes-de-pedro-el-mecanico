@@ -2,7 +2,9 @@ package feeder.View.Window;
 
 import java.awt.Canvas;
 
-public class Escenario extends Canvas implements Runnable {
+import javax.swing.JPanel;
+
+public class Escenario extends JPanel implements Runnable {
 
     private static String info = "";
 
@@ -16,7 +18,7 @@ public class Escenario extends Canvas implements Runnable {
     private static int fps = 0;
 
     protected void mostrar(){
-        this.getBufferStrategy().getDrawGraphics().dispose();
+        this.getGraphics().dispose();
         this.fps++;
     }
 
@@ -24,12 +26,12 @@ public class Escenario extends Canvas implements Runnable {
         this.aps++;
     }
 
-    private synchronized void iniciar(){
+    public synchronized void iniciar(){
         this.ejecucion = true;
         hilo = new Thread(this, "Graficos");
         hilo.start();
     }
-    private synchronized void detener(){
+    public synchronized void detener(){
         this.ejecucion = false;
         //hilo.stop(); a bruta
         try {

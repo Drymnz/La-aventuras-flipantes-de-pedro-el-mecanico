@@ -1,9 +1,5 @@
 package feeder;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Graphics;
-
 import javax.swing.JFrame;
 
 import feeder.Logic.Configuracion.ConfiguracionTeclasPersonaje;
@@ -16,12 +12,13 @@ public class App
         //Menu_Principal menuPrincial = new Menu_Principal();
         JFrame ven = new JFrame();
         ven.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ven.pack();
         ven.setLocationRelativeTo(null);
         ven.setVisible(true);
         Escenario_Uno escenario = new Escenario_Uno();
         ConfiguracionTeclasPersonaje tecl = new ConfiguracionTeclasPersonaje(escenario.getJugador());
         escenario.addKeyListener(tecl);
+        ven.addKeyListener(tecl);
+        escenario.iniciar();
         ven.addKeyListener(tecl);
         ven.add(escenario);
         ven.setSize(1280,720);

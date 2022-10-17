@@ -2,9 +2,10 @@ package feeder.Logic.Personajes.Enemigo;
 
 public class Zombie extends Enemigo{
 
-    Zombie(int Vida, String Nombre) {
-        super(Vida, Nombre);
+    public Zombie(int vida, String nombre, int posX, int posY) {
+        super(vida, nombre, posX, posY);
         //TODO Auto-generated constructor stub
     }
-    
+
+
 }

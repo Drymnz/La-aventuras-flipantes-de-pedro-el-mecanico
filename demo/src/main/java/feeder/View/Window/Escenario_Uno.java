@@ -1,19 +1,15 @@
 package feeder.View.Window;
 
-import java.awt.Graphics;
-
-import javax.swing.JPanel;
-
 import feeder.Logic.Personajes.Personaje;
 
-public class Escenario_Uno extends JPanel {
-    Personaje jugador_uno = new Personaje(100, "Pedro");
+public class Escenario_Uno extends Escenario {
+    Personaje jugador = new Personaje(100,"Pedro",0,0);
     @Override
-    public void paintAll(Graphics g) {
-        // TODO Auto-generated method stub
-        super.paintAll(g);
-        //g.drawImage(jugador_uno.getImagen(), jugador_uno.getPosY(), jugador_uno.getPosX(), Color.BLUE, null);
+    protected void mostrar() {
+        this.getBufferStrategy().getDrawGraphics().fillRect(0,0, 100, 100);
+        super.mostrar();
     }
-    //ListerActionKyes
-    //jugador_uno.setPosY(jugador_uno.getPosY()+1);
+    public Personaje getJugador() {
+        return jugador;
+    }
 }

@@ -4,9 +4,11 @@ import feeder.Logic.Personajes.Personaje;
 
 public class Enemigo extends Personaje{
 
-    Enemigo(int Vida, String Nombre) {
-        super(Vida, Nombre);
+    public Enemigo(int vida, String nombre, int posX, int posY) {
+        super(vida, nombre, posX, posY);
         //TODO Auto-generated constructor stub
     }
+
+  
     
 }

@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 
 public class Escenario extends JPanel implements Runnable {
 
+
     private static String info = "";
 
     private static final String NAME_GAME = "Las flipantes aventuras de pedro el mecanico";
@@ -18,7 +19,9 @@ public class Escenario extends JPanel implements Runnable {
     private static int fps = 0;
 
     protected void mostrar(){
-        this.getGraphics().dispose();
+        if (getGraphics() != null) {
+            getGraphics().dispose();
+        }          
         this.fps++;
     }
 
@@ -44,7 +47,7 @@ public class Escenario extends JPanel implements Runnable {
     @Override
     public void run() {
         final int NS_POR_SEGUNDO = 1000000000;
-        final short APS_OBJETIVO = 120;
+        final int APS_OBJETIVO = 120;
         final double NS_POR_ACTUALIZAR = NS_POR_SEGUNDO / APS_OBJETIVO;
 
         
@@ -65,8 +68,8 @@ public class Escenario extends JPanel implements Runnable {
             while (delta>=1) {
                 actualizar();
                 delta--;
+                this.repaint();
             }
-
             this.mostrar();
             if (System.nanoTime()-referenciaContador > NS_POR_SEGUNDO) {
                 info = NAME_GAME + " || Aps" + aps +" || Fps "+fps ;

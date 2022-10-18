@@ -12,20 +12,14 @@ public class App
         //Menu_Principal menuPrincial = new Menu_Principal();
         JFrame ven = new JFrame();
         ven.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ven.setLocationRelativeTo(null);
-        ven.setVisible(true);
+        ven.setSize(1280,720);
         Escenario_Uno escenario = new Escenario_Uno();
         ConfiguracionTeclasPersonaje tecl = new ConfiguracionTeclasPersonaje(escenario.getJugador());
-        escenario.addKeyListener(tecl);
-        ven.addKeyListener(tecl);
         escenario.iniciar();
         ven.addKeyListener(tecl);
         ven.add(escenario);
-        ven.setSize(1280,720);
         ven.setLocationRelativeTo(null);
         ven.show(true);
-        ven.repaint();
-        ven.pack();
     }
     
 }

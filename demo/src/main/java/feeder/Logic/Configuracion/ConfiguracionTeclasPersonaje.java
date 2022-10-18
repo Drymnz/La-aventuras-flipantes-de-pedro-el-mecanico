@@ -3,13 +3,13 @@ package feeder.Logic.Configuracion;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import feeder.Logic.Personajes.Personaje;
+import feeder.Logic.Personajes.Jugador;
 
 public class ConfiguracionTeclasPersonaje implements KeyListener  {
 
     private final static int numerotelca = 120;
 
-    private Personaje avatar;
+    private Jugador avatar;
 
     private int distancia = 10;
 
@@ -18,24 +18,23 @@ public class ConfiguracionTeclasPersonaje implements KeyListener  {
     private char arriba =KeyEvent.VK_W;
     private char abajo = KeyEvent.VK_S;
 
-    public ConfiguracionTeclasPersonaje( Personaje avatar) {
+    public ConfiguracionTeclasPersonaje( Jugador avatar) {
         this.avatar = avatar;
     }
-
 
     @Override
     public void keyPressed(KeyEvent arg0) {
         if (arg0.getKeyCode() == avanzar) {
-            avatar.setPosX(avatar.getPosX()-distancia);
+            avatar.moverIzquierda(distancia);
         }
         if (arg0.getKeyCode() == retroceder) {
-            avatar.setPosX(avatar.getPosX()+distancia);
+            avatar.moverDerecha(distancia);
         }
         if (arg0.getKeyCode() == abajo) {
-            avatar.setPosY(avatar.getPosY()+distancia);
+            avatar.moverBot(distancia);
         }
         if (arg0.getKeyCode() == arriba) {
-            avatar.setPosY(avatar.getPosY()-distancia);
+            avatar.moverTop(distancia);
         }
     }
 

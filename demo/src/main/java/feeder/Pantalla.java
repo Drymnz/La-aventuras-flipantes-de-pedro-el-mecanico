@@ -5,6 +5,9 @@ public class Pantalla {
     private final int alto;
 
     public final int []pixeles;
+
+    private final static int LADO_SPRINTE = 32;
+    private final static int MASCARA_SPRINTE = LADO_SPRINTE-1;
     public Pantalla(final int ancho, final int alto){
         this.ancho = ancho;
         this.alto = alto;
@@ -16,11 +19,19 @@ public class Pantalla {
             pixeles[i]=0;
         }
     }
-    public void mostrar(){
+    public void mostrar(final int compensacionX, final int compesacionY){
         for (int y = 0; y < this.alto; y++) {
-            //int posicionY= y+compens https://www.youtube.com/watch?v=BaT0DM2f2dU&list=PLN9W6BC54TJJr3erMptodGOQFX7gWfKTM&index=10 6:40 Episode 789 –16min
+            int posicionY= y+ compesacionY;
+            if (posicionY<0||posicionY>=alto) {
+                continue;
+            }
             for (int x = 0; x < this.ancho; x++) {
-                
+                int posicionX = x + compensacionX;
+                if (posicionX<0||posicionX>=alto) {
+                    continue;
+                }
+                /*CODIGO PARA DIBUJAR */
+                pixeles[posicionX+posicionY*ancho]= Sprinte.suel.pixeles[(x&MASCARA_SPRINTE)+(y&MASCARA_SPRINTE)*LADO_SPRINTE];
             }
         }
     }

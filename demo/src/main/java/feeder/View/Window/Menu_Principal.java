@@ -1,5 +1,6 @@
 package feeder.View.Window;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -20,15 +21,13 @@ public class Menu_Principal extends JFrame implements KeyListener{
     
     public Menu_Principal(){
     
-     setSize(1280,720);
-     setTitle("Zombies");
+        setSize(1280,720);
+        setTitle("Zombies");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(null);
         
         iniciarComponentes();
-    
-    
     }
 
 
@@ -42,8 +41,10 @@ public class Menu_Principal extends JFrame implements KeyListener{
         PanelIncial.setLayout(null);
         this.getContentPane().add(PanelIncial);
         
-        prueba = new JLabel(new ImageIcon("auto.jpg"));
+        prueba = new JLabel("hola mundo");
         prueba.setBounds(100, 100, 50, 50);
+        prueba.setBackground(Color.BLUE);
+        prueba.setForeground(Color.BLUE);
         
         
         botonIniciar = new JButton("Empezar");
@@ -59,11 +60,13 @@ public class Menu_Principal extends JFrame implements KeyListener{
         
         
     }
-    
-    
-    
-    
-    
+
+    public synchronized void mostar(){
+
+    }
+
+    public synchronized void actualizar(){
+    }
     
 
     @Override
@@ -73,9 +76,7 @@ public class Menu_Principal extends JFrame implements KeyListener{
             prueba.setLocation(prueba.getX()-5, prueba.getY());
 
         }else if (e.getKeyChar() == 'd') {
-            prueba.setLocation(prueba.getX()+5, prueba.getY());
-
-        
+            prueba.setLocation(prueba.getX()+5, prueba.getY());        
         }
     }
 

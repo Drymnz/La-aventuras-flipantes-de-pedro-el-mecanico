@@ -8,7 +8,10 @@ public class Personaje {
     private int PosX;
     private int PosY;
     private ImageIcon textura;
-
+/*
+ * @vida la vida del presonaje
+ * @nombre 
+ */
     public Personaje(int vida, String nombre, int posX, int posY) {
         Vida = vida;
         Nombre = nombre;
@@ -33,9 +36,9 @@ public class Personaje {
 
     /*fin Movimiento */
 
-    
+    //1
     public int getVida() {
-        return Vida;
+        return Vida;//1
     }
     public void setVida(int vida) {
         Vida = vida;

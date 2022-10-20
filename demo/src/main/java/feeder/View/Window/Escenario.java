@@ -18,13 +18,11 @@ public class Escenario extends JPanel implements Runnable {
     private static int aps = 0;
     private static int fps = 0;
 
-    protected void mostrar(){
-        if (getGraphics() != null) {
-            getGraphics().dispose();
-        }          
+    public void mostrar(){
         this.fps++;
     }
 
+    //n
     protected void actualizar(){
         this.aps++;
     }
@@ -43,41 +41,43 @@ public class Escenario extends JPanel implements Runnable {
             e.printStackTrace();
         }
     }
+    /* 60 */
 
+    ////n³+3n²+11n+7
     @Override
     public void run() {
-        final int NS_POR_SEGUNDO = 1000000000;
-        final int APS_OBJETIVO = 120;
-        final double NS_POR_ACTUALIZAR = NS_POR_SEGUNDO / APS_OBJETIVO;
+        final int NS_POR_SEGUNDO = 1000000000;//1
+        final int APS_OBJETIVO = 120;//1  
+        final double NS_POR_ACTUALIZAR = NS_POR_SEGUNDO / APS_OBJETIVO;//1
 
         
-        double tiempoTrascurido;
-        long referenciactualizacion = System.nanoTime();
-        long referenciaContador = System.nanoTime();
-        double delta = 0; 
+        double tiempoTrascurido;//1
+        long referenciactualizacion = System.nanoTime();//1
+        long referenciaContador = System.nanoTime();//1
+        double delta = 0; //1
 
-        while (ejecucion) {
+        while (ejecucion) {//n
 
-            final long inicioBucle = System.nanoTime();
+            final long inicioBucle = System.nanoTime();//n
 
-            tiempoTrascurido = inicioBucle - referenciactualizacion;
-            referenciactualizacion = inicioBucle;
+            tiempoTrascurido = inicioBucle - referenciactualizacion;//n
+            referenciactualizacion = inicioBucle;//n
 
-            delta += tiempoTrascurido / NS_POR_ACTUALIZAR;
+            delta += tiempoTrascurido / NS_POR_ACTUALIZAR;//n
 
-            while (delta>=1) {
-                actualizar();
-                delta--;
-                this.repaint();
+            while (delta>=1) {//n²
+                actualizar();//n³
+                delta--;//n²
             }
-            this.mostrar();
-            if (System.nanoTime()-referenciaContador > NS_POR_SEGUNDO) {
-                info = NAME_GAME + " || Aps" + aps +" || Fps "+fps ;
-                this.aps = 0;
-                this.fps = 0;
-                referenciaContador = System.nanoTime(); 
+
+            if (System.nanoTime()-referenciaContador > NS_POR_SEGUNDO) {//n
+                info = NAME_GAME + " || Aps" + aps +" || Fps "+fps ;//n
+                System.out.println(this.info);//n
+                this.aps = 0;//n
+                this.fps = 0;//n
+                referenciaContador = System.nanoTime(); //n
             }
-            this.actualizar();            
+            this.actualizar();   //n²         
         }
     }
     

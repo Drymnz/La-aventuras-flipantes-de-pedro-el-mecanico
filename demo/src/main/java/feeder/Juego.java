@@ -87,7 +87,6 @@ public class Juego extends Canvas implements Runnable{
         dibujar.drawImage(image,0,0,getWidth(),getHeight(),null);
 
         dibujar.dispose();
-        
         estrategia.show();
         this.fps++;
     }
@@ -105,7 +104,11 @@ public class Juego extends Canvas implements Runnable{
         if (teclado.derecha) {
             x++;
         }
+        colicionesObjetetos();
         this.aps ++;
+    }
+    public void colicionesObjetetos(){
+
     }
     @Override
     public void run() {

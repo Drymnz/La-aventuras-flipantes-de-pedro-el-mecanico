@@ -52,9 +52,11 @@ public class Menu_Principal extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent arg0) {
         if (arg0.getSource() == botonIniciar) {
+            primer_nivel.setVentana(this);
             primer_nivel.iniciar();
             PanelIncial.setVisible(false);
             primer_nivel.setVisible(true);
+            this.addKeyListener(primer_nivel.getTeclado());
             this.repaint();
         }
     }

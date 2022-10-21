@@ -1,6 +1,7 @@
 package feeder.View.Window;
 
 import java.awt.Canvas;
+import java.sql.Time;
 
 import javax.swing.JPanel;
 
@@ -18,11 +19,13 @@ public class Escenario extends JPanel implements Runnable {
     private static int aps = 0;
     private static int fps = 0;
 
+
+    private final static short LIMTE_ACTUALIZACION = 60;
+
     public void mostrar(){
         this.fps++;
     }
 
-    //n
     protected void actualizar(){
         this.aps++;
     }
@@ -41,43 +44,34 @@ public class Escenario extends JPanel implements Runnable {
             e.printStackTrace();
         }
     }
-    /* 60 */
-
     ////n³+3n²+11n+7
     @Override
     public void run() {
-        final int NS_POR_SEGUNDO = 1000000000;//1
-        final int APS_OBJETIVO = 120;//1  
-        final double NS_POR_ACTUALIZAR = NS_POR_SEGUNDO / APS_OBJETIVO;//1
-
+        long lastTime= System.nanoTime();
+        double nsPerTick = 1000000000D /60D;
         
-        double tiempoTrascurido;//1
-        long referenciactualizacion = System.nanoTime();//1
-        long referenciaContador = System.nanoTime();//1
-        double delta = 0; //1
-
+        long lastTimer = System.currentTimeMillis();
+        double delta = 0;
         while (ejecucion) {//n
-
-            final long inicioBucle = System.nanoTime();//n
-
-            tiempoTrascurido = inicioBucle - referenciactualizacion;//n
-            referenciactualizacion = inicioBucle;//n
-
-            delta += tiempoTrascurido / NS_POR_ACTUALIZAR;//n
-
+            long now  = System.nanoTime();
+            delta += (now-lastTime) / nsPerTick;
+            lastTime = now;
+            boolean shoulRender = false; 
             while (delta>=1) {//n²
+                delta-=1;//n²
+                shoulRender = true;
                 actualizar();//n³
-                delta--;//n²
             }
-
-            if (System.nanoTime()-referenciaContador > NS_POR_SEGUNDO) {//n
+            if (shoulRender) {
+                //render
+            }
+            if (System.currentTimeMillis()-lastTimer>=1000) {//n
                 info = NAME_GAME + " || Aps" + aps +" || Fps "+fps ;//n
                 System.out.println(this.info);//n
                 this.aps = 0;//n
                 this.fps = 0;//n
-                referenciaContador = System.nanoTime(); //n
+                lastTimer +=1000;
             }
-            this.actualizar();   //n²         
         }
     }
     

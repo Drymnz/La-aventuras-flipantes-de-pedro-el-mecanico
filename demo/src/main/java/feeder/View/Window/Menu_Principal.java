@@ -11,14 +11,16 @@ import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 public class Menu_Principal extends JFrame implements ActionListener{
 
     private static final String NOMBRE_JUEGO = "Las flipantes aventuras de Pedro el mecanico";
+    private static final int ANCHO_VENTANA = 1280;
+    private static final int ALTO_VENTANA = 720;
     
     private JButton botonIniciar;
     private JPanel PanelIncial;
 
-    private static Escenario_Uno primer_nivel = new Escenario_Uno();
+    private static Escenario_Uno primer_nivel = new Escenario_Uno(ANCHO_VENTANA,ALTO_VENTANA);
     
     public Menu_Principal(){
-        this.setSize(1280,720);
+        this.setSize(ANCHO_VENTANA,ALTO_VENTANA);
         this.setTitle(NOMBRE_JUEGO);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
@@ -29,7 +31,7 @@ public class Menu_Principal extends JFrame implements ActionListener{
 
     private void iniciarComponentes() {
         PanelIncial = new JPanel();
-        PanelIncial.setBounds(0, 0, 1280, 720);
+        PanelIncial.setBounds(0, 0, ANCHO_VENTANA, ALTO_VENTANA);
         PanelIncial.setVisible(true);
         PanelIncial.setLayout(null);
         this.getContentPane().add(PanelIncial);
@@ -42,7 +44,7 @@ public class Menu_Principal extends JFrame implements ActionListener{
         PanelIncial. setFocusable(true);
         PanelIncial.add(botonIniciar);
         primer_nivel.setLayout(null);
-        primer_nivel.setBounds(0, 0, 1280, 720);
+        primer_nivel.setBounds(0, 0, ANCHO_VENTANA, ALTO_VENTANA);
         primer_nivel.setVisible(false);
         this.getContentPane().add(primer_nivel);
         botonIniciar.doClick();//click
@@ -60,17 +62,4 @@ public class Menu_Principal extends JFrame implements ActionListener{
             this.repaint();
         }
     }
-
-
-/*     @Override
-    public void keyTyped(KeyEvent e) {
-        
-        if (e.getKeyChar() == 'a') {
-            prueba.setLocation(prueba.getX()-5, prueba.getY());
-
-        }else if (e.getKeyChar() == 'd') {
-            prueba.setLocation(prueba.getX()+5, prueba.getY());        
-        }
-    } */
-    
 }

@@ -1,14 +1,12 @@
 package feeder.View.Window;
 
-import java.awt.Canvas;
-import java.sql.Time;
-
 import javax.swing.JPanel;
 
 public class Escenario extends JPanel implements Runnable {
 
+    private final static short LIMTE_ACTUALIZACION = 60;
 
-    private static String info = "";
+    protected static String INFORMACION_ESCENARIO = "";
 
     private static final String NAME_GAME = "Las flipantes aventuras de pedro el mecanico";
 
@@ -19,8 +17,13 @@ public class Escenario extends JPanel implements Runnable {
     private static int aps = 0;
     private static int fps = 0;
 
+    private final int ANCHO_VENTANA ;
+    private final int ALTO_VENTANA ;
 
-    private final static short LIMTE_ACTUALIZACION = 60;
+    public Escenario(final int ANCHO_VENTANA,final int ALTO_VENTANA){
+        this.ANCHO_VENTANA = ANCHO_VENTANA;
+        this.ALTO_VENTANA = ALTO_VENTANA;
+    }
 
     public void mostrar(){
         this.fps++;
@@ -48,7 +51,7 @@ public class Escenario extends JPanel implements Runnable {
     @Override
     public void run() {
         long lastTime= System.nanoTime();
-        double nsPerTick = 1000000000D /60D;
+        double nsPerTick = 1000000000D /LIMTE_ACTUALIZACION;
         
         long lastTimer = System.currentTimeMillis();
         double delta = 0;
@@ -63,11 +66,11 @@ public class Escenario extends JPanel implements Runnable {
                 actualizar();//n³
             }
             if (shoulRender) {
-                //render
+                mostrar();
             }
             if (System.currentTimeMillis()-lastTimer>=1000) {//n
-                info = NAME_GAME + " || Aps" + aps +" || Fps "+fps ;//n
-                System.out.println(this.info);//n
+                INFORMACION_ESCENARIO = NAME_GAME + " || Aps" + aps +" || Fps "+fps ;//n
+                //System.out.println(this.INFORMACION_ESCENARIO);//n
                 this.aps = 0;//n
                 this.fps = 0;//n
                 lastTimer +=1000;

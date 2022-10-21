@@ -15,26 +15,25 @@ public class ConfiguracionTeclasPersonaje implements KeyListener  {
 
     private int distancia = 10;
 
-    private boolean avanzar ;
-    private boolean retroceder ;
-    private boolean arriba ;
-    private boolean abajo ;
+    private boolean tecla_a ;
+    private boolean tecla_d ;
+    private boolean tecla_w ;
+    private boolean tecla_s ;
 
     public ConfiguracionTeclasPersonaje( Jugador avatar) {
         this.avatar = avatar;
     }
     public void actualizar(){
-        avanzar = tecladas[KeyEvent.VK_A];
-        retroceder = tecladas[KeyEvent.VK_D];
-        arriba = tecladas[KeyEvent.VK_W];
-        abajo = tecladas[KeyEvent.VK_S];
+        tecla_a = tecladas[KeyEvent.VK_A];
+        tecla_d = tecladas[KeyEvent.VK_D];
+        tecla_w = tecladas[KeyEvent.VK_W];
+        tecla_s = tecladas[KeyEvent.VK_S];
     }
 
     @Override
     public void keyPressed(KeyEvent arg0) {
         if (arg0.getKeyCode() < this.NUMERO_TECLAS) {
             tecladas[arg0.getKeyCode()] = true;
-            System.out.println(arg0.getKeyCode());
         }
     }
 
@@ -61,17 +60,17 @@ public class ConfiguracionTeclasPersonaje implements KeyListener  {
     public int getDistancia() {
         return distancia;
     }
-    public boolean isAvanzar() {
-        return avanzar;
+    public boolean istecla_a() {
+        return tecla_a;
     }
-    public boolean isRetroceder() {
-        return retroceder;
+    public boolean istecla_d() {
+        return tecla_d;
     }
-    public boolean isArriba() {
-        return arriba;
+    public boolean istecla_w() {
+        return tecla_w;
     }
-    public boolean isAbajo() {
-        return abajo;
+    public boolean istecla_s() {
+        return tecla_s;
     }
     
 }

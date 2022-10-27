@@ -1,5 +1,9 @@
 package feeder.View.Window;
 
+import java.awt.Color;
+
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Escenario extends JPanel implements Runnable {
@@ -46,6 +50,9 @@ public class Escenario extends JPanel implements Runnable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public void ver_area(JLabel componente , Color color_visible){
+        componente.setBorder(BorderFactory.createLineBorder(color_visible));
     }
     ////n³+3n²+11n+7
     @Override

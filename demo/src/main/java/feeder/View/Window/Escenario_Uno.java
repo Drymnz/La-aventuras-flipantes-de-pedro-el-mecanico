@@ -10,11 +10,10 @@ import javax.swing.JLabel;
 
 public class Escenario_Uno extends Escenario {
     private Jugador jugador = new Jugador(100,"Pedro",0,0);
-    private JLabel ver = new JLabel("hola mundo");
+    private JLabel jlabel_jugador = new JLabel("hola mundo");
     private JLabel info = new JLabel("info");
     private ConfiguracionTeclasPersonaje teclado = new ConfiguracionTeclasPersonaje(jugador);
     private JFrame ventana;
-
 
     public Escenario_Uno(int ANCHO_VENTANA, int ALTO_VENTANA) {
         super(ANCHO_VENTANA, ALTO_VENTANA);
@@ -23,22 +22,21 @@ public class Escenario_Uno extends Escenario {
         info.setVisible(true);
         info.setBackground(Color.BLACK);
         info.setForeground(Color.CYAN);
-
-        ver.setBounds(jugador.getPosX(),jugador.getPosY(), 200,100);
-        ver.setVisible(true);
-        ver.setBackground(Color.BLACK);
-        ver.setForeground(Color.CYAN);
-        this.add(ver);
-        this.add(info);;
+        jlabel_jugador.setBounds(jugador.getPosX(),jugador.getPosY(), 100,25);
+        jlabel_jugador.setVisible(true);
+        jlabel_jugador.setBackground(jugador.getColor_personaje());
+        jlabel_jugador.setForeground(Color.CYAN);
+        jugador.iniciar_animaccion();
+        this.ver_area(jlabel_jugador,jugador.getColor_personaje());
+        this.add(jlabel_jugador);
+        this.add(info);
         //TODO Auto-generated constructor stub
     }
+
     @Override
     public void mostrar() {
         // TODO Auto-generated method stub
         super.mostrar();
-        if (ventana!=null) {
-            ventana.repaint();
-        }
     }
 
     @Override
@@ -58,7 +56,8 @@ public class Escenario_Uno extends Escenario {
             jugador.setPosY(jugador.getPosY()-velocidad);
         }
         info.setText("jugador x: "+jugador.getPosX()+" || y:" +jugador.getPosY()+"  "+this.INFORMACION_ESCENARIO);
-        ver.setLocation(jugador.getPosX(), jugador.getPosY());
+        jlabel_jugador.setLocation(jugador.getPosX(), jugador.getPosY());
+        this.ver_area(jlabel_jugador,jugador.getColor_personaje());
     }
     public Jugador getJugador() {
         return jugador;

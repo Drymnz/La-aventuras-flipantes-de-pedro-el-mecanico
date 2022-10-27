@@ -1,8 +1,16 @@
 package feeder.Logic.Personajes;
 
 import javax.swing.ImageIcon;
+import java.awt.Color;
 
-public class Jugador extends Personaje{
+
+public class Jugador extends Personaje implements Runnable{
+
+    protected boolean ejecuccion = false;
+
+    private Thread hilo;
+
+    private Color color_personaje;
 
     private static ImageIcon viendo_derecha;
     private static ImageIcon viendo_izquierda;
@@ -16,6 +24,36 @@ public class Jugador extends Personaje{
         viendo_izquierda = new ImageIcon(getClass().getResource("/Personaje/Viendo a la izquierda.png"));
         paso_derecha = new ImageIcon(getClass().getResource("/Personaje/Paso a la derecha.png"));
         paso_izquierda = new ImageIcon(getClass().getResource("/Personaje/Paso a la izquierda.png"));
+    }
+
+    public synchronized void iniciar_animaccion(){
+        this.ejecuccion = true;
+        hilo = new Thread(this, "Jugador_Animaccion");
+        hilo.start();
+    }
+    public synchronized void detener_animaccion(){
+        this.ejecuccion = false;
+        try {
+            hilo.join();
+        } catch (Exception e) {
+           e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void run() {
+        while (this.ejecuccion) {
+            try {
+                this.color_personaje = Color.BLUE;
+                //this.setTextura(paso_izquierda);
+                Thread.sleep(500);
+                //this.setTextura(paso_derecha);
+                this.color_personaje = Color.GREEN;
+                Thread.sleep(500);
+            } catch (Exception e) {
+               e.printStackTrace();
+            }
+        }
     }
     
     @Override
@@ -40,4 +78,10 @@ public class Jugador extends Personaje{
         // TODO Auto-generated method stub
         super.moverTop(distancia);
     }
+
+    public Color getColor_personaje() {
+        return color_personaje;
+    }
+
+
 }

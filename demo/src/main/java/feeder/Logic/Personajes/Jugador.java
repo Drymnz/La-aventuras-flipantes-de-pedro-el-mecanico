@@ -20,10 +20,15 @@ public class Jugador extends Personaje implements Runnable{
 
     public Jugador(int vida, String nombre, int posX, int posY) {
         super(vida, nombre, posX, posY);
+        try {
         viendo_derecha = new ImageIcon(getClass().getResource("/Personaje/Viendo a la derecha.png"));
         viendo_izquierda = new ImageIcon(getClass().getResource("/Personaje/Viendo a la izquierda.png"));
         paso_derecha = new ImageIcon(getClass().getResource("/Personaje/Paso a la derecha.png"));
         paso_izquierda = new ImageIcon(getClass().getResource("/Personaje/Paso a la izquierda.png"));
+        } catch (Exception e) {
+        }
+  
+        
     }
 
     public synchronized void iniciar_animaccion(){

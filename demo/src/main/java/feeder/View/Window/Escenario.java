@@ -6,6 +6,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import feeder.Logic.Fisica.Graveda;
+
 public class Escenario extends JPanel implements Runnable {
 
     private final static short LIMTE_ACTUALIZACION = 60;
@@ -23,6 +25,8 @@ public class Escenario extends JPanel implements Runnable {
 
     private final int ANCHO_VENTANA ;
     private final int ALTO_VENTANA ;
+
+    protected Graveda graveda = new Graveda( LIMTE_ACTUALIZACION);
 
     public Escenario(final int ANCHO_VENTANA,final int ALTO_VENTANA){
         this.ANCHO_VENTANA = ANCHO_VENTANA;

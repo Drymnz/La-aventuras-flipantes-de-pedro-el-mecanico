@@ -3,9 +3,6 @@ package feeder.Logic.Personajes;
 import javax.swing.ImageIcon;
 
 public class Personaje {
-
-   
-
     private int Vida;
     private String Nombre;
     private int PosX;
